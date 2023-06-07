@@ -22,6 +22,18 @@ extends AnimatedSprite
 ## Note: use animation_finished signal to react to a completed animation
 signal animation_climax(animname)
 
+# TODO: maybe better do everything with enums and use to the String name array 
+# as workaround it's double
+const dir_names = ['down','left','up','right']
+const anim_names = ['idle', 'walk', 'stride', 'jog', 'cast', 'slash', 'thrust', 'hurt']
+
+const dir_vectors = {
+	"down" 	: Vector2(0, 1),
+	"left" 	: Vector2(-1, 0),
+	"up" 	: Vector2(0, -1),
+	"right" : Vector2(1, 0),
+}
+
 export(String, 'down','left','up','right') var dir = 'down' setget set_dir
 export(String, 'idle', 'walk', 'stride', 'jog', 'cast', 'slash', 'thrust', 'hurt') var anim = 'idle' setget set_anim
 
@@ -61,11 +73,42 @@ func _exit_tree():
 		frames.disconnect("changed", self, "_reload_layers_from_blueprint")
 	disconnect("frame_changed", self, "_on_LPCSprite_frame_changed")
 
+## This takes the first found LPCAnimationPlayer child if available 
+## and creates all the needed animations
+func _reload_animation_player():
+	var animation_player = find_node("LPCAnimationPlayer")
+	var animation_tree = find_node("LPCAnimationTree")
+#
+	if animation_player is LPCAnimationPlayer and animation_tree is LPCAnimationTree:
+		for anim_element in anim_names:
+			
+			var blend2d_node: LPCAnimationNodeBlendSpace2D = animation_tree.create_animation_blend2d(anim_element)
+			
+			if anim_element != "idle":
+				animation_tree.create_animation_transition("idle", anim_element)
+				
+			for dir_element in dir_names:
+				var animation = animation_player.create_animation_resource(anim_element, dir_element)
+				
+				blend2d_node.create_animation_blend_point(anim_element, dir_element, dir_vectors[dir_element])
+				
+			
+		animation_tree.tree_root.set_start_node("idle")
+		animation_player.set_autoplay("idle_down")
+				
 
 func _get_configuration_warning() -> String:
 	if not (frames as LPCSpriteBlueprint):
 		return "'frames' property must be of type LPCSpriteBlueprint"
 	return ""
+
+func set_animation_tree(direction: Vector2):
+	var animation_tree = find_node("LPCAnimationTree")
+	
+	if animation_tree is LPCAnimationTree:
+		for anim_element in anim_names:
+			var parameter = "parameters/" + anim_element + "/blend_position"
+			animation_tree.set(parameter, direction)
 
 ## Set direction by providing either:
 ## - Vector2 (any direction)
