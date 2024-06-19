@@ -77,6 +77,8 @@ text = "text"
 [node name="LPCSprite" type="AnimatedSprite2D" parent="Node2D/Paladin"]
 sprite_frames = ExtResource("3")
 animation = &"slash_right"
+frame = 4
+frame_progress = 1.0
 centered = false
 offset = Vector2(-32, -60)
 script = ExtResource("2")
