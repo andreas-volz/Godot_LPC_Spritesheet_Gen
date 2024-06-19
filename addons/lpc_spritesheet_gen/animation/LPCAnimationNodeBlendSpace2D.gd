@@ -1,4 +1,4 @@
-tool
+@tool
 class_name LPCAnimationNodeBlendSpace2D
 extends AnimationNodeBlendSpace2D
 
