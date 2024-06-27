@@ -64,7 +64,6 @@ func _process(delta):
 	_last_frames = sprite_frames
 	_update_animation()
 
-# TODO deactivated
 func _enter_tree():
 	pass
 	if sprite_frames:
@@ -72,7 +71,6 @@ func _enter_tree():
 	frame_changed.connect(_on_LPCSprite_frame_changed)
 	_reload_layers_from_blueprint()
 	
-# TODO deactivated
 func _exit_tree():
 	pass
 	if sprite_frames:
@@ -211,7 +209,7 @@ func _reload_layers_from_blueprint():
 
 
 func _add_layer_sprite(layer : LPCSpriteBlueprintLayer) -> Sprite2D:
-	var new_sprite = LPCSpriteLayer.new() if (layer.oversize_animation == null) else LPCSpriteLayerOversize.new()
+	var new_sprite = LPCSpriteLayer.new() if (layer.oversize_animation.is_empty()) else LPCSpriteLayerOversize.new()
 	new_sprite.set_atlas(layer.texture)
 	new_sprite.unique_name_in_owner = false
 	new_sprite.set_name(layer.type_name)
