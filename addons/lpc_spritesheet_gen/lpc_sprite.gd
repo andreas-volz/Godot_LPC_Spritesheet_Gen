@@ -217,7 +217,7 @@ func _add_layer_sprite(layer : LPCSpriteBlueprintLayer) -> Sprite2D:
 	new_sprite.centered = centered
 	new_sprite.blueprint_layer = layer
 	new_sprite.material = layer.material.duplicate()
-	#new_sprite.texture.flags = Texture.FLAG_MIPMAPS # TODO: port this to Godot 4
+	new_sprite.texture_filter = TextureFilter.TEXTURE_FILTER_NEAREST_WITH_MIPMAPS
 	add_child(new_sprite)
 	(sprite_frames as LPCSpriteBlueprint)._set_atlas(null)
 	return new_sprite

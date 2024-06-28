@@ -871,7 +871,7 @@ region = Rect2(448, 512, 64, 64)
 atlas = SubResource("819")
 region = Rect2(512, 512, 64, 64)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_sq4hv"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_33uo7"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -1736,7 +1736,7 @@ scale = Vector2(1.5, 1.5)
 
 [node name="sprite_left" type="AnimatedSprite2D" parent="vpc/vp"]
 position = Vector2(32, 62)
-sprite_frames = SubResource("SpriteFrames_sq4hv")
+sprite_frames = SubResource("SpriteFrames_33uo7")
 animation = &"idle_left"
 centered = false
 offset = Vector2(-32, -60)
@@ -1746,7 +1746,7 @@ anim = ""
 
 [node name="sprite_down" type="AnimatedSprite2D" parent="vpc/vp"]
 position = Vector2(94.6667, 61.3333)
-sprite_frames = SubResource("SpriteFrames_sq4hv")
+sprite_frames = SubResource("SpriteFrames_33uo7")
 animation = &"idle_down"
 centered = false
 offset = Vector2(-32, -60)
@@ -1755,7 +1755,7 @@ anim = ""
 
 [node name="sprite_right" type="AnimatedSprite2D" parent="vpc/vp"]
 position = Vector2(159.333, 62.6667)
-sprite_frames = SubResource("SpriteFrames_sq4hv")
+sprite_frames = SubResource("SpriteFrames_33uo7")
 animation = &"idle_right"
 centered = false
 offset = Vector2(-32, -60)
@@ -1766,7 +1766,7 @@ anim = ""
 [node name="sprite_up" type="AnimatedSprite2D" parent="vpc/vp"]
 position = Vector2(223.333, 62)
 scale = Vector2(1.00001, 1)
-sprite_frames = SubResource("SpriteFrames_sq4hv")
+sprite_frames = SubResource("SpriteFrames_33uo7")
 animation = &"idle_up"
 centered = false
 offset = Vector2(-32, -60)

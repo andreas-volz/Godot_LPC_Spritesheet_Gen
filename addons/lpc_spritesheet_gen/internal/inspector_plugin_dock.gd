@@ -80,7 +80,7 @@ func _download_spritesheets_from_web(base_url : String, layers : Array):
 		var local_path = dst_base_path + layer["fileName"]
 		if not FileAccess.file_exists(local_path):
 			var layer_web_url = base_url + layer["fileName"]
-			var dir = DirAccess.open(local_path)
+			var dir = DirAccess.open(dst_base_path)
 			dir.make_dir_recursive(local_path.get_base_dir()) # TODO: check if this is correct
 			http_node.download_file = local_path
 			http_node.request(layer_web_url)
@@ -90,7 +90,7 @@ func _download_spritesheets_from_web(base_url : String, layers : Array):
 	
 	await get_tree().process_frame
 	if downloaded_files.size() > 0:
-		var filesystem := editor_interface.get_resource_filesystem()
+		var filesystem := EditorInterface.get_resource_filesystem()
 		print("Rescan..")
 		filesystem.scan()
 		await filesystem.resources_reimported
