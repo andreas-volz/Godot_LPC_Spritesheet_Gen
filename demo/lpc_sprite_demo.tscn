@@ -44,12 +44,16 @@ func _process(delta):
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 self_modulate = Color(1, 1, 1, 0.235294)
+custom_minimum_size = Vector2(300, 100)
+offset_right = 1.0
 bbcode_enabled = true
 text = "Point mouse to move Unit
 Mouse buttons to play animations:
 left -> slash
 right -> cast
 middle -> shoot"
+fit_content = true
+scroll_active = false
 
 [node name="Node2D" type="Node2D" parent="."]
 scale = Vector2(2, 2)
@@ -76,13 +80,12 @@ text = "text"
 
 [node name="LPCSprite" type="AnimatedSprite2D" parent="Node2D/Paladin"]
 sprite_frames = ExtResource("3")
-animation = &"slash_right"
-frame = 4
-frame_progress = 1.0
+animation = &"walk_left"
+frame_progress = 0.309539
 centered = false
 offset = Vector2(-32, -60)
 script = ExtResource("2")
-dir = "right"
-anim = "slash"
+dir = "left"
+anim = "walk"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

@@ -54,26 +54,29 @@ func _init():
 func _ready() -> void:
 	_reload_animation_player()
 
-## Called every frame. 'delta' is the elapsed time since the previous frame.
+# TODO: with Godot4 this it's not needed to connect the event
+# but I get a recursive stack crash if I use the signal. Need
+# to investivate this
+
+
 func _process(delta):
 	if _last_frames and _last_frames != sprite_frames:
 		# reconnect if frames object changed (needed for editor)
-		_last_frames.changed.disconnect(_reload_layers_from_blueprint)
-		sprite_frames.changed.connect(_reload_layers_from_blueprint)
+		#_last_frames.changed.disconnect(_reload_layers_from_blueprint) # TODO
+		#sprite_frames.changed.connect(_reload_layers_from_blueprint) # TODO
 		call_deferred("_reload_layers_from_blueprint")
 	_last_frames = sprite_frames
 	_update_animation()
 
 func _enter_tree():
-	if sprite_frames:
-		sprite_frames.changed.connect(_reload_layers_from_blueprint)
+	#if sprite_frames: # TODO
+		#sprite_frames.changed.connect(_reload_layers_from_blueprint) # TODO
 	frame_changed.connect(_on_LPCSprite_frame_changed)
 	_reload_layers_from_blueprint()
 	
 func _exit_tree():
-	pass
-	if sprite_frames:
-		sprite_frames.changed.disconnect(_reload_layers_from_blueprint)
+	#if sprite_frames: # TODO
+		#sprite_frames.changed.disconnect(_reload_layers_from_blueprint) # TODO
 	frame_changed.disconnect(_on_LPCSprite_frame_changed)
 
 ## This takes the first found LPCAnimationPlayer child if available 
@@ -95,8 +98,6 @@ func _reload_animation_player():
 				
 				blend2d_node.create_animation_blend_point(anim_element, dir_element, dir_vectors[dir_element])
 				
-			
-		animation_tree.tree_root.set_start_node("idle")
 		animation_player.set_autoplay("idle_down")
 				
 
@@ -198,13 +199,14 @@ func _reload_layers_from_blueprint():
 			remove_child(child)
 			child.queue_free()
 	var blueprint : LPCSpriteBlueprint = sprite_frames
-	var has_layers = false
-	for layer in blueprint.layers:
-		var sprite = _add_layer_sprite(layer)
-		has_layers = true
-	if has_layers:
-		blueprint._set_atlas(null)
-	_on_LPCSprite_frame_changed()
+	if blueprint != null:
+		var has_layers = false
+		for layer in blueprint.layers:
+			var sprite = _add_layer_sprite(layer)
+			has_layers = true
+		if has_layers:
+			blueprint._set_atlas(null)
+		_on_LPCSprite_frame_changed()
 
 
 func _add_layer_sprite(layer : LPCSpriteBlueprintLayer) -> Sprite2D:
