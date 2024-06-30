@@ -65,7 +65,6 @@ func _process(delta):
 	_update_animation()
 
 func _enter_tree():
-	pass
 	if sprite_frames:
 		sprite_frames.changed.connect(_reload_layers_from_blueprint)
 	frame_changed.connect(_on_LPCSprite_frame_changed)
@@ -238,12 +237,11 @@ func _angle_to_dir(_angle):
 
 
 func _update_animation():
-	
 	var anim_name = anim + "_" + dir
 	if animation != anim_name:
 		if anim == "hurt":
-			# TODO this does run sometimes into a recursion! strange
-			#dir = "down" # 'hurt' is always 'down'
+			if dir != "down": # this check prevents running into a recusion as in Godot4 it would call the setter again and again...
+				dir = "down" # 'hurt' is always 'down'
 			anim_name = "hurt_down"
 		if sprite_frames and sprite_frames.has_animation(anim_name):
 			# This mess is an attempt to blend stride animations changes better together

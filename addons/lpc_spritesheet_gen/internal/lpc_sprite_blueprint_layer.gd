@@ -9,7 +9,7 @@ class_name LPCSpriteBlueprintLayer
 @export var body: String = "male"     # Type of Body
 @export var name: String = "Template" # From JSON Data
 @export var type_name: String = "body" # From JSON Data
-@export var oversize_animation: String = "" # TODO this was null before -> check
+@export var oversize_animation: String = ""
 @export var variant: String = "0" # From Selection
 @export var abs_path: String = ""
 @export var rel_path: String = ""

@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Lpc Gen Demo"
+config/name="LPC Gen Demo"
 run/main_scene="res://demo/lpc_sprite_demo.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"

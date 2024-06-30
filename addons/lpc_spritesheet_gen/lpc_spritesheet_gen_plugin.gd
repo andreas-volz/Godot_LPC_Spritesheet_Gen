@@ -9,7 +9,6 @@ var inspector_plugin
 func _enter_tree():
 	var LPCSpiteInspector = preload("internal/lpc_sprite_inspector.gd")
 	inspector_plugin = LPCSpiteInspector.new()
-	#inspector_plugin.editor_interface = get_editor_interface() # TODO deactivated
 
 	add_inspector_plugin(inspector_plugin)
 

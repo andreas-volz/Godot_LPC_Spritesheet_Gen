@@ -81,7 +81,7 @@ func _download_spritesheets_from_web(base_url : String, layers : Array):
 		if not FileAccess.file_exists(local_path):
 			var layer_web_url = base_url + layer["fileName"]
 			var dir = DirAccess.open(dst_base_path)
-			dir.make_dir_recursive(local_path.get_base_dir()) # TODO: check if this is correct
+			dir.make_dir_recursive(local_path.get_base_dir())
 			http_node.download_file = local_path
 			http_node.request(layer_web_url)
 			

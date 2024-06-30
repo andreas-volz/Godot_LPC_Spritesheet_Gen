@@ -46,18 +46,13 @@ func remove_layer(index : int):
 	layers.remove_at(index)
 	emit_changed()
 	
-
-#	TODO repair this
 func _set_atlas(atlas : Texture):
 	# TODO: resursive loop if this is removed
 	if atlas == null:
 		return
-
-	#for anim in animations:
-		#print("anim: ", anim.frames)
-
-	for anim in animations:
-		for idx in range(0, get_frame_count(anim.name)):
-			var frame = anim.frames[idx].duplicate()
+		
+	for anim in get_animation_names():
+		for idx in get_frame_count(anim):
+			var frame = get_frame_texture(anim,idx).duplicate()
 			frame.atlas = atlas
-			set_frame(anim.name, idx, frame.texture)
+			set_frame(anim, idx, frame)

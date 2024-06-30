@@ -11,7 +11,7 @@ const _offsets := {
 }
 
 func _init():
-	super() # TODO recursion after port to 4.x?
+	super() # calls _init() from the super class
 	offset = -Vector2(64,64)
 	region_rect = Rect2(0,0,192,192)
 

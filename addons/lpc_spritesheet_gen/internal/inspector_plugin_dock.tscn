@@ -871,7 +871,7 @@ region = Rect2(448, 512, 64, 64)
 atlas = SubResource("819")
 region = Rect2(512, 512, 64, 64)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_33uo7"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_dnpmg"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -1736,7 +1736,7 @@ scale = Vector2(1.5, 1.5)
 
 [node name="sprite_left" type="AnimatedSprite2D" parent="vpc/vp"]
 position = Vector2(32, 62)
-sprite_frames = SubResource("SpriteFrames_33uo7")
+sprite_frames = SubResource("SpriteFrames_dnpmg")
 animation = &"idle_left"
 centered = false
 offset = Vector2(-32, -60)
@@ -1746,7 +1746,7 @@ anim = ""
 
 [node name="sprite_down" type="AnimatedSprite2D" parent="vpc/vp"]
 position = Vector2(94.6667, 61.3333)
-sprite_frames = SubResource("SpriteFrames_33uo7")
+sprite_frames = SubResource("SpriteFrames_dnpmg")
 animation = &"idle_down"
 centered = false
 offset = Vector2(-32, -60)
@@ -1755,7 +1755,7 @@ anim = ""
 
 [node name="sprite_right" type="AnimatedSprite2D" parent="vpc/vp"]
 position = Vector2(159.333, 62.6667)
-sprite_frames = SubResource("SpriteFrames_33uo7")
+sprite_frames = SubResource("SpriteFrames_dnpmg")
 animation = &"idle_right"
 centered = false
 offset = Vector2(-32, -60)
@@ -1766,7 +1766,7 @@ anim = ""
 [node name="sprite_up" type="AnimatedSprite2D" parent="vpc/vp"]
 position = Vector2(223.333, 62)
 scale = Vector2(1.00001, 1)
-sprite_frames = SubResource("SpriteFrames_33uo7")
+sprite_frames = SubResource("SpriteFrames_dnpmg")
 animation = &"idle_up"
 centered = false
 offset = Vector2(-32, -60)
@@ -1800,6 +1800,7 @@ modulate = Color(0.623529, 0.623529, 0.623529, 1)
 layout_mode = 2
 bbcode_enabled = true
 text = "[table=3][cell]Z[/cell][cell]Type[/cell][cell]File path[/cell][/table]"
+fit_content = true
 scroll_active = false
 
 [node name="Label" type="Label" parent="."]
@@ -1808,6 +1809,7 @@ text = "Credits for this Blueprint (Please read license terms)"
 
 [node name="CreditsLabel" type="RichTextLabel" parent="."]
 modulate = Color(0.6, 0.592157, 0.709804, 1)
+custom_minimum_size = Vector2(0, 240)
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 2
